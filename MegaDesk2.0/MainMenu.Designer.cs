@@ -98,7 +98,7 @@
             this.Controls.Add(this.btnSearchQuotes);
             this.Controls.Add(this.btnExit);
             this.Name = "MainMenu";
-            this.Text = "Form1";
+            this.Text = "MegaDesk";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
