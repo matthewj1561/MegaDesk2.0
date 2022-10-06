@@ -38,7 +38,9 @@ namespace MegaDesk_James
 
             DeskQuote dq = new DeskQuote(name.Text, r, d);
 
-            decimal price = dq.getQuotePrice();
+            dq.getQuotePrice();
+
+
 
             /*            
              *            
