@@ -34,7 +34,19 @@ namespace MegaDesk_James
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Desk d = new Desk(name.Text, width.Value, depth.Value, (int)drawerNum.Value, dm , this.r);
+            Desk d = new Desk(width.Value, depth.Value, (int)drawerNum.Value, dm);
+
+            DeskQuote dq = new DeskQuote(name.Text, r, d);
+
+            decimal price = dq.getQuotePrice();
+
+            /*            
+             *            
+            get quote amount
+            write quote to quotes.json
+            show displayquote form
+            */
+
   
         }
 

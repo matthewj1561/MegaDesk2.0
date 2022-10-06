@@ -13,14 +13,7 @@ namespace MegaDesk_James
         Veneer,
         Pine
     }
-    public enum Rush
-    {
-        none,
-        three,
-        five,
-        seven
-        
-    }
+
     internal class Desk
     {
         public const short MIN_WIDTH = 24;
@@ -36,16 +29,14 @@ namespace MegaDesk_James
 
         public DesktopMaterial DesktopMaterial { get; set; }
 
-        public Rush Rush { get; set; }
-
-        public Desk (string n, decimal h, decimal w, int numOfDraw, DesktopMaterial dM, Rush r)
+        public Desk (decimal h, decimal w, int numOfDraw, DesktopMaterial dM)
         {
-            this.Name = n;
+       
             this.Height = h;
             this.Width = w;
             this.NumberOfDrawers = numOfDraw;
             this.DesktopMaterial = dM;
-            this.Rush = r;
+     
         }
     }
 }
