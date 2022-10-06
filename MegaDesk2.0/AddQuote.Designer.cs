@@ -44,6 +44,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rushType = new System.Windows.Forms.ComboBox();
             this.test = new System.Windows.Forms.Label();
+            this.lblTest = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.drawerNum)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.depth)).BeginInit();
@@ -226,11 +227,21 @@
             this.test.Size = new System.Drawing.Size(0, 16);
             this.test.TabIndex = 16;
             // 
+            // lblTest
+            // 
+            this.lblTest.AutoSize = true;
+            this.lblTest.Location = new System.Drawing.Point(625, 375);
+            this.lblTest.Name = "lblTest";
+            this.lblTest.Size = new System.Drawing.Size(44, 16);
+            this.lblTest.TabIndex = 17;
+            this.lblTest.Text = "label7";
+            // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTest);
             this.Controls.Add(this.test);
             this.Controls.Add(this.rushType);
             this.Controls.Add(this.label6);
@@ -275,5 +286,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox rushType;
         private System.Windows.Forms.Label test;
+        private System.Windows.Forms.Label lblTest;
     }
 }

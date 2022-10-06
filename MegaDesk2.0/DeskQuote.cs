@@ -17,19 +17,23 @@ namespace MegaDesk_James
     }
     internal class DeskQuote
     {
-        private decimal quotePrice;
+        public decimal quotePrice;
         private string customerName;
         private DateTime date;
         private Rush rush;
         public Desk d;
 
-        public DeskQuote (string cm, Rush r, Desk d )
+        public DeskQuote(string cm, Rush r, Desk d)
         {
             customerName = cm;
             rush = r;
             this.d = d;
             date = DateTime.Now;
+            
         }
+
+        int[,] rushPrices = new int[,] { {0,0,0 },{ 60, 70, 80 }, { 40, 50, 60 }, { 30, 35, 40 } };
+        int[] surfaceCosts = new int[] {200, 100, 50, 300, 125 };
 
         public void getQuotePrice()
         {
@@ -42,27 +46,28 @@ namespace MegaDesk_James
 
             if (surfaceArea > 1000)
             {
-                surfaceAreaPrice = surfaceArea + 1000;
+                surfaceAreaPrice = surfaceArea - 1000;
             }
             if (d.NumberOfDrawers > 0)
             {
                 drawCost = d.NumberOfDrawers * 50;
             }
-            if ((int)rush != 0)
+
+            if (surfaceArea < 1000)
             {
-                switch ((int)rush)
-                {
-                    case 1:
-                        bracket = 1;
-                        break;
-                    case 2:
-                        bracket = 2;
-                        break;
-                    default:
-                        bracket = 3;
-                        break;
-                }
+                rushCost = rushPrices[(int)rush, 0];
+            } else if (surfaceArea > 1000 && surfaceArea < 2000)
+            {
+                rushCost = rushPrices[(int)rush, 1];
+            } else
+            {
+                rushCost = rushPrices[(int)rush, 2];
             }
+
+            decimal totalCost = basePrice + drawCost + rushCost + surfaceAreaPrice + surfaceCosts[(int)d.DesktopMaterial];
+
+            quotePrice = totalCost;
+
 
 
             

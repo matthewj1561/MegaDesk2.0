@@ -40,7 +40,7 @@ namespace MegaDesk_James
 
             dq.getQuotePrice();
 
-
+            lblTest.Text = dq.quotePrice.ToString();
 
             /*            
              *            
