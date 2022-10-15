@@ -19,15 +19,16 @@ namespace MegaDesk_James
     }
     internal class DeskQuote
     {
-        public decimal quotePrice;
-        private string customerName;
-        private DateTime date;
-        private Rush rush;
-        public Desk d;
+        public decimal quotePrice { get; set;  }
+        public string customerName { get; set; }
+        public DateTime date { get; set; }
+        public Rush rush { get; set; }
+        public Desk d { get; set; }
 
         public DeskQuote(string cm, Rush r, Desk d)
         {
             customerName = cm;
+            CustomerNames = cm;
             rush = r;
             this.d = d;
             date = DateTime.Now;
@@ -40,7 +41,7 @@ namespace MegaDesk_James
         {
             int[,] finalPrices = new int[4, 3];
             List<int> values = new List<int>();
-            string path = @"C:\Users\matth\source\repos\MegaDesk2.0\MegaDesk2.0\cit365_document_rushOrderPrices.txt";
+            string path = @"cit365_document_rushOrderPrices.txt";
             string[] readText = File.ReadAllLines(path);
             foreach(string price in readText)
             {
@@ -127,7 +128,7 @@ namespace MegaDesk_James
             decimal totalCost = basePrice + drawCost + rushCost + surfaceAreaPrice + surfaceCosts[(int)d.DesktopMaterial];
 
             quotePrice = totalCost;
-            Serialize(this, @"C:\\Users\\matth\\source\\repos\\MegaDesk2.0\\MegaDesk2.0\\quotes.json");
+            Serialize(this, @"quotes.json");
 
 
 

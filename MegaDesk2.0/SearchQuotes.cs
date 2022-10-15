@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +20,9 @@ namespace MegaDesk_James
         {
             InitializeComponent();
             _mainMenu = mainMenu;
+            comboBox1.DataSource = Enum.GetValues(typeof(DesktopMaterial));
+            comboBox1.SelectedIndex = 0;
+            dataGridView1.RowHeadersVisible = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -27,6 +33,39 @@ namespace MegaDesk_James
         private void SearchQuotes_FormClosed(object sender, FormClosedEventArgs e)
         {
             _mainMenu.Show();
+        }
+
+        private void SearchQuotes_Load(object sender, EventArgs e)
+        {
+            var quotesFile = @"quotes.json";
+            DesktopMaterial selectedMaterial = (DesktopMaterial) comboBox1.SelectedItem;
+
+            if (File.Exists(quotesFile))
+            {
+                using (StreamReader sr = new StreamReader(quotesFile))
+                {
+                    string quotes = sr.ReadToEnd();
+                    //List<DeskQuote> deskQuotes = JsonSerializer.Deserialize<List<DeskQuote>>(quotes);
+                    List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
+                    dataGridView1.DataSource = deskQuotes.Select(d => new
+                    {
+                        Date = d.date,
+                        Customer = d.CustomerNames,
+                        Depth = d.d.Height,
+                        Width = d.d.Width,
+                        Drawers = d.d.NumberOfDrawers,
+                        SurfaceMaterial = d.d.DesktopMaterial,
+                        DeliveryType = d.rush,
+                        QuoteAmount = d.quotePrice.ToString("c")
+
+                    }).Where(d => d.SurfaceMaterial == selectedMaterial).ToList();
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchQuotes_Load(sender, e);
         }
     }
 }

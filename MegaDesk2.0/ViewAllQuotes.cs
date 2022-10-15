@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MegaDesk_James
 {
@@ -17,6 +20,30 @@ namespace MegaDesk_James
         {
             InitializeComponent();
             _mainMenu = mainMenu;
+            dataGridView1.RowHeadersVisible = false;
+            var quotesFile = @"quotes.json";
+
+            if (File.Exists(quotesFile))
+            {
+                using (StreamReader sr = new StreamReader(quotesFile))
+                {
+                    string quotes = sr.ReadToEnd();
+                    //List<DeskQuote> deskQuotes = JsonSerializer.Deserialize<List<DeskQuote>>(quotes);
+                    List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
+                    dataGridView1.DataSource = deskQuotes.Select(d => new
+                    {
+                        Date = d.date,
+                        Customer = d.CustomerNames,
+                        Depth = d.d.Height,
+                        Width = d.d.Width,
+                        Drawers = d.d.NumberOfDrawers,
+                        SurfaceMaterial = d.d.DesktopMaterial,
+                        DeliveryType = d.rush,
+                        QuoteAmount = d.quotePrice.ToString("c")
+
+                    }).ToList();
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
