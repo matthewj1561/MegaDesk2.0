@@ -11,27 +11,27 @@ namespace MegaDesk_James
 {
     public enum Rush
     {
-        fourteen,
-        three,
-        five,
-        seven
+        Fourteen_Days,
+        Three_Days,
+        Five_Days,
+        Seven_Days
 
     }
     internal class DeskQuote
     {
-        public decimal quotePrice { get; set;  }
-        public string customerName { get; set; }
-        public DateTime date { get; set; }
-        public Rush rush { get; set; }
-        public Desk d { get; set; }
+        public decimal QuotePrice { get; set;  }
+        public string CustomerName { get; set; }
+        public DateTime Date { get; set; }
+        public Rush Rush { get; set; }
+        public Desk Desk { get; set; }
 
-        public DeskQuote(string cm, Rush r, Desk d)
+        public DeskQuote(string customerName, Rush rush, Desk desk)
         {
-            customerName = cm;
-            CustomerNames = cm;
-            rush = r;
-            this.d = d;
-            date = DateTime.Now;
+            CustomerName = customerName;
+            CustomerNames = customerName;
+            Rush = rush;
+            this.Desk = desk;
+            Date = DateTime.Now;
             
         }
 
@@ -91,7 +91,7 @@ namespace MegaDesk_James
             }
         }
 
-        public void getQuotePrice()
+        public void GetQuotePrice()
         {
             int[,] rushPrices = GetRushOrder();
             foreach(int price in rushPrices)
@@ -102,32 +102,32 @@ namespace MegaDesk_James
             decimal surfaceAreaPrice = 0;
             decimal drawCost = 0;
             decimal rushCost = 0;
-            decimal surfaceArea = d.Width * d.Height;
+            decimal surfaceArea = Desk.Width * Desk.Height;
             int bracket = 0;
 
             if (surfaceArea > 1000)
             {
                 surfaceAreaPrice = surfaceArea - 1000;
             }
-            if (d.NumberOfDrawers > 0)
+            if (Desk.NumberOfDrawers > 0)
             {
-                drawCost = d.NumberOfDrawers * 50;
+                drawCost = Desk.NumberOfDrawers * 50;
             }
 
             if (surfaceArea < 1000)
             {
-                rushCost = rushPrices[(int)rush, 0];
+                rushCost = rushPrices[(int)Rush, 0];
             } else if (surfaceArea > 1000 && surfaceArea < 2000)
             {
-                rushCost = rushPrices[(int)rush, 1];
+                rushCost = rushPrices[(int)Rush, 1];
             } else
             {
-                rushCost = rushPrices[(int)rush, 2];
+                rushCost = rushPrices[(int)Rush, 2];
             }
 
-            decimal totalCost = basePrice + drawCost + rushCost + surfaceAreaPrice + surfaceCosts[(int)d.DesktopMaterial];
+            decimal totalCost = basePrice + drawCost + rushCost + surfaceAreaPrice + surfaceCosts[(int)Desk.DesktopMaterial];
 
-            quotePrice = totalCost;
+            QuotePrice = totalCost;
             Serialize(this, @"quotes.json");
 
 

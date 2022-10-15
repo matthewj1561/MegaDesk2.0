@@ -32,14 +32,14 @@ namespace MegaDesk_James
                     List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
                     dataGridView1.DataSource = deskQuotes.Select(d => new
                     {
-                        Date = d.date,
+                        Date = d.Date.ToString("MM/dd/yyyy"),
                         Customer = d.CustomerNames,
-                        Depth = d.d.Height,
-                        Width = d.d.Width,
-                        Drawers = d.d.NumberOfDrawers,
-                        SurfaceMaterial = d.d.DesktopMaterial,
-                        DeliveryType = d.rush,
-                        QuoteAmount = d.quotePrice.ToString("c")
+                        Depth = d.Desk.Height,
+                        Width = d.Desk.Width,
+                        Drawers = d.Desk.NumberOfDrawers,
+                        SurfaceMaterial = d.Desk.DesktopMaterial,
+                        DeliveryType = d.Rush,
+                        QuoteAmount = d.QuotePrice.ToString("c")
 
                     }).ToList();
                 }

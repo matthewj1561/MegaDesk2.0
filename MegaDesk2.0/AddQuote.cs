@@ -55,9 +55,9 @@ namespace MegaDesk_James
 
             DeskQuote dq = new DeskQuote(name.Text, r, d);
 
-            dq.getQuotePrice();
+            dq.GetQuotePrice();
 
-            lblTest.Text = dq.quotePrice.ToString();
+            lblTest.Text = dq.QuotePrice.ToString();
             quotes.Add(dq);
             var json = JsonConvert.SerializeObject(quotes);
 

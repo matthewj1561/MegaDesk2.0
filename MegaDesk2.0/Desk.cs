@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace MegaDesk_James
 {
     public enum DesktopMaterial{
-        oak,
-        laminate,
-        pine,
-        rosewood,
-        veneer
+        Oak,
+        Laminate,
+        Pine,
+        Rosewood,
+        Veneer
     }
 
     internal class Desk
