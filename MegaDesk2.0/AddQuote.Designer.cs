@@ -43,8 +43,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.rushType = new System.Windows.Forms.ComboBox();
-            this.test = new System.Windows.Forms.Label();
-            this.lblTest = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblPriceText = new System.Windows.Forms.Label();
+            this.lblToast = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.drawerNum)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.depth)).BeginInit();
@@ -53,7 +54,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(249, 362);
+            this.btnCancel.Location = new System.Drawing.Point(211, 377);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 51);
             this.btnCancel.TabIndex = 7;
@@ -63,7 +64,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(402, 362);
+            this.btnSave.Location = new System.Drawing.Point(432, 377);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(101, 52);
             this.btnSave.TabIndex = 6;
@@ -82,6 +83,7 @@
             this.drawerNum.Name = "drawerNum";
             this.drawerNum.Size = new System.Drawing.Size(104, 22);
             this.drawerNum.TabIndex = 3;
+            this.drawerNum.ValueChanged += new System.EventHandler(this.drawerNum_ValueChanged);
             // 
             // groupBox1
             // 
@@ -117,6 +119,7 @@
             0,
             0,
             0});
+            this.depth.ValueChanged += new System.EventHandler(this.depth_ValueChanged);
             // 
             // width
             // 
@@ -139,6 +142,7 @@
             0,
             0,
             0});
+            this.width.ValueChanged += new System.EventHandler(this.width_ValueChanged);
             // 
             // label2
             // 
@@ -219,30 +223,41 @@
             this.rushType.TabIndex = 15;
             this.rushType.SelectedIndexChanged += new System.EventHandler(this.rushType_SelectedIndexChanged);
             // 
-            // test
+            // lblPrice
             // 
-            this.test.AutoSize = true;
-            this.test.Location = new System.Drawing.Point(249, 305);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(0, 16);
-            this.test.TabIndex = 16;
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(376, 314);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(0, 29);
+            this.lblPrice.TabIndex = 17;
             // 
-            // lblTest
+            // lblPriceText
             // 
-            this.lblTest.AutoSize = true;
-            this.lblTest.Location = new System.Drawing.Point(625, 375);
-            this.lblTest.Name = "lblTest";
-            this.lblTest.Size = new System.Drawing.Size(44, 16);
-            this.lblTest.TabIndex = 17;
-            this.lblTest.Text = "label7";
+            this.lblPriceText.AutoSize = true;
+            this.lblPriceText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPriceText.Location = new System.Drawing.Point(265, 314);
+            this.lblPriceText.Name = "lblPriceText";
+            this.lblPriceText.Size = new System.Drawing.Size(94, 29);
+            this.lblPriceText.TabIndex = 18;
+            this.lblPriceText.Text = "Price: $";
+            // 
+            // lblToast
+            // 
+            this.lblToast.AutoSize = true;
+            this.lblToast.Location = new System.Drawing.Point(307, 31);
+            this.lblToast.Name = "lblToast";
+            this.lblToast.Size = new System.Drawing.Size(0, 16);
+            this.lblToast.TabIndex = 19;
             // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblTest);
-            this.Controls.Add(this.test);
+            this.Controls.Add(this.lblToast);
+            this.Controls.Add(this.lblPriceText);
+            this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.rushType);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -285,7 +300,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox rushType;
-        private System.Windows.Forms.Label test;
-        private System.Windows.Forms.Label lblTest;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblPriceText;
+        private System.Windows.Forms.Label lblToast;
     }
 }

@@ -91,6 +91,11 @@ namespace MegaDesk_James
             }
         }
 
+        public void save()
+        {
+            Serialize(this, @"quotes.json");
+        }
+
         public void GetQuotePrice()
         {
             int[,] rushPrices = GetRushOrder();
@@ -128,7 +133,7 @@ namespace MegaDesk_James
             decimal totalCost = basePrice + drawCost + rushCost + surfaceAreaPrice + surfaceCosts[(int)Desk.DesktopMaterial];
 
             QuotePrice = totalCost;
-            Serialize(this, @"quotes.json");
+            
 
 
 
